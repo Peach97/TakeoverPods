@@ -1,0 +1,45 @@
+#playbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 8rem;
+
+    /* rgba(32, 33, 36); */
+    z-index: 99;
+    transition: bottom 0.75s;
+    display: flex;
+
+
+
+
+}
+
+#playbar.open {
+    display: flex;
+    bottom: -8rem;
+}
+
+#maximize-btn {
+    transition: all 2s;
+    display: flex;
+    width: 3rem;
+    -webkit-transition: all 2s;
+    bottom: 7.5rem;
+    position: fixed;
+    pointer-events: all;
+    border-radius: 8px;
+}
+
+#maximize-btn.show {
+    bottom: 10rem;
+    display: flex;
+    position: fixed;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+
+    pointer-events: none;
+
+
+
+}

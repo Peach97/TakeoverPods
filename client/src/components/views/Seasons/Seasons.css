@@ -1,0 +1,45 @@
+.seasons-container {
+    height: fit-content;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    background-color: #002962;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+
+
+}
+
+/* .top-wrapper {
+    height: 25rem;
+    width: 100%;
+    position: absolute;
+    background-color: #F3FAFF;
+
+
+} */
+
+
+
+h6,
+#seasons {
+    color: #3C4856;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 4rem 0 2rem 0
+}
+
+@media (max-width: 1500px) {
+    .top-wrapper {
+        height: 30rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .episodes {
+        margin-top: 10rem;
+    }
+
+}

@@ -1,0 +1,51 @@
+.mic-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+#takeover-spin-circle {
+    -webkit-animation: spin 50s linear infinite;
+    animation: spin 50s linear infinite;
+}
+
+#takeover-spin-circle:hover {
+    animation-play-state: paused;
+}
+
+#takeover-spin-circle:hover #avatars {
+    animation-play-state: paused;
+
+}
+
+
+#avatars {
+    -webkit-animation: spin 50s linear infinite;
+    animation: spin 50s linear infinite;
+    animation-direction: reverse;
+
+}

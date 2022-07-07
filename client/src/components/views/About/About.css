@@ -1,0 +1,14 @@
+.about {
+    background-color: #3C4856;
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 20rem;
+    padding-top: 2.5rem;
+    display: flex;
+    position: relative;
+    /* padding-top: calc(var(--navbar-height) * 2); */
+    margin-top: calc(var(--navbar-height) * -1);
+    align-items: center;
+    justify-content: center;
+
+}

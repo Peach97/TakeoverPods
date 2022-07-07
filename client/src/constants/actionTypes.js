@@ -1,0 +1,10 @@
+export const CREATE = "CREATE";
+export const UPDATE = "UPDATE";
+export const DELETE = "DELETE";
+export const FETCH_ALL = "FETCH_ALL";
+export const FETCH_BY_CHANNEL = "FETCH_BY_CHANNEL";
+export const END_LOADING = "END_LOADING";
+export const START_LOADING = "START_LOADING";
+export const SET_TOKEN = "SET_TOKEN";
+export const SET_SHOWS = "SET_SHOWS";
+export const SET_USER = "SET_USER";
