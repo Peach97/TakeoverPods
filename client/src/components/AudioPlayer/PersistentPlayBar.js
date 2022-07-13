@@ -1,14 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PersistentPlayBar.css";
 import AudioPlayer from "./AudioPlayer";
 import { IconButton } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography } from "@mui/material";
+import SpotifyLoginButton from "../../SpotifyLoginButton";
+import { useStateValue } from "../../StateProvider";
+import { getTokenFromResponse } from "../../spotify";
+import axios from "axios";
 
-export default function PersistentPlayBar({ isOpen, setMenuStatus }) {
+export default function PersistentPlayBar({ isOpen, setMenuStatus, spotify }) {
   const [minimized, setMinimized] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [{ token, devices }, dispatch] = useStateValue();
+  // useEffect(() => {
+  //   if (window.location.hash !== "") {
+  //     const hash = getTokenFromResponse();
+  //     const userToken = hash.access_token;
+  //     localStorage.setItem("userToken", userToken);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const confirmToken = async () => {
+  //     let passUserToken = localStorage.getItem("userToken");
+  //     return passUserToken;
+  //   };
+  //   const setUserToken = async () => {
+  //     var newUserToken = await confirmToken();
+  //     if (newUserToken) {
+  //       spotify.setAccessToken(newUserToken);
+  //       dispatch({
+  //         type: "SET_TOKEN",
+  //         token: newUserToken,
+  //       });
+  //       spotify.getMe().then((user) => {
+  //         console.log(user);
+  //         dispatch({
+  //           type: "SET_USER",
+  //           user,
+  //         });
+  //       });
+  //       spotify.getMyDevices().then((devices) => {
+  //         console.log(devices);
+  //         dispatch({
+  //           type: "SET_DEVICES",
+  //           devices: devices.body.devices,
+  //         });
+  //       });
+  //     } else {
+  //       console.log("User token:" + newUserToken);
+  //     }
+  //   };
+  //   setUserToken();
+  // }, [spotify, token, dispatch]);
+
   return (
     <Typography
       sx={{
@@ -19,7 +66,7 @@ export default function PersistentPlayBar({ isOpen, setMenuStatus }) {
       id="playbar"
       className={isOpen ? "open" : ""}
     >
-      <AudioPlayer />
+      <AudioPlayer spotify={spotify} />
       <IconButton
         disableRipple
         sx={{ height: 0, width: 0, marginRight: "0.5rem" }}

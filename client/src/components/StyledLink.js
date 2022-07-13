@@ -12,6 +12,9 @@ const StyledLink = styled(Link)`
   &:active {
     text-decoration: none;
   }
+  &:hover {
+    border-bottom: 1px solid;
+  }
 `;
 
 export default (props) => <StyledLink {...props} />;

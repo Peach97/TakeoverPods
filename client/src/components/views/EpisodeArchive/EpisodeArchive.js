@@ -62,6 +62,7 @@ const EpisodeArchive = ({ page, setPage }) => {
                     aria-label="episodes"
                     image={item.track.album.images[0].url}
                     date={item.added_at}
+                    artist={item.track.artists[0].name}
                     title={item.track.name}
                     description={item.description}
                     sx={{

@@ -7,16 +7,20 @@ import Loading from "./components/HeroSection/Loading";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material/styles";
 import { App } from "./App.js";
+import { getTokenFromResponse } from "./spotify";
 
 const s = new SpotifyWebApi();
 export default function ToggleColorMode() {
   //wrapper for color mode toggle which will also contain spotify api calls as dispatch value is declared for redux in the app component
   const [{ token }, dispatch] = useStateValue();
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   //declare the use of Context API value for 'dispatch'
   useEffect(() => {
     async function getToken(
-      client_id = process.env.client_id,
-      client_secret = process.env.client_secret
+      client_id = `${process.env.REACT_APP_ID}`,
+      client_secret = `${process.env.REACT_APP_SECRET}`
     ) {
       const headers = {
         headers: {
@@ -38,7 +42,6 @@ export default function ToggleColorMode() {
           headers
         );
         let _token = response.data.access_token;
-        console.log(_token);
         localStorage.setItem("token", _token);
       } catch (error) {
         console.log(error);
@@ -48,30 +51,73 @@ export default function ToggleColorMode() {
   }, []);
 
   useEffect(() => {
-    const findToken = async () => {
-      let _token = localStorage.getItem("token");
-      return _token;
-    };
-    //retrieve token from API and store it in local storage
-    const search = async () => {
-      let _token = await findToken();
-      if (_token) {
-        s.setAccessToken(_token);
-      }
-      dispatch({
-        type: "SET_TOKEN",
-        token: _token,
-      });
-      dispatch({
-        type: "SET_SPOTIFY",
-        spotify: s,
-      });
-      // async function to get token value and dispatch it to context provider
-      const getPlaylists = async () => {
-        let _token = await findToken();
-        console.log(_token);
-        const playlistHeaders = { Authorization: `Bearer ${_token}` };
+    if (!localStorage.getItem("userToken")) {
+      const findToken = async () => {
+        let _token = localStorage.getItem("token");
+        return _token;
+      };
 
+      //retrieve token from API and store it in local storage
+      const search = async () => {
+        let _token = await findToken();
+        if (_token) {
+          s.setAccessToken(_token);
+        }
+        dispatch({
+          type: "SET_TOKEN",
+          token: _token,
+        });
+        dispatch({
+          type: "SET_SPOTIFY",
+          spotify: s,
+        });
+        // async function to get token value and dispatch it to context provider
+        const getPlaylists = async () => {
+          let _token = await findToken();
+          const playlistHeaders = { Authorization: `Bearer ${_token}` };
+
+          try {
+            const { data } = await axios.get(
+              "https://api.spotify.com/v1/playlists/5yR4WrjiekKXCANhCmdnRW/tracks?market=FI",
+              {
+                headers: playlistHeaders,
+              }
+            );
+            dispatch({
+              type: "SET_PLAYLIST",
+              playlist: data,
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        getPlaylists();
+      };
+      setTimeout(search, 3000);
+      //retrieve playlist items/tracks using access token in headers
+    } else {
+      if (window.location.hash !== "") {
+        const hash = getTokenFromResponse();
+        const userToken = hash.access_token;
+        localStorage.setItem("userToken", userToken);
+        if (userToken) {
+          s.setAccessToken(userToken);
+          dispatch({
+            type: "SET_PREMIUM_TOKEN",
+            premiumtoken: userToken,
+          });
+        }
+        s.getMe().then((user) => {
+          console.log(user);
+          dispatch({
+            type: "SET_USER",
+            user,
+          });
+        });
+      }
+      const getPremiumPlaylist = async () => {
+        const premiumToken = localStorage.getItem("userToken");
+        const playlistHeaders = { Authorization: `Bearer ${premiumToken}` };
         try {
           const { data } = await axios.get(
             "https://api.spotify.com/v1/playlists/5yR4WrjiekKXCANhCmdnRW/tracks?market=FI",
@@ -87,10 +133,8 @@ export default function ToggleColorMode() {
           console.log(error);
         }
       };
-      getPlaylists();
-    };
-    //retrieve playlist items/tracks using access token in headers
-    setTimeout(search, 3000);
+      getPremiumPlaylist();
+    }
     //timeout for smoother loading animation
   }, [token, dispatch]);
   //useEffect dependencies to end loop - requires token to be dispatched to context provider

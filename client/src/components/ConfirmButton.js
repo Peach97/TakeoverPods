@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 
 const ConfirmDialog = (props) => {
-  const { title, children, open, setOpen, onConfirm } = props;
+  const { title, children, open, setOpen, onConfirm, button1, button2 } = props;
   return (
     <Dialog
       open={open}
@@ -23,7 +23,7 @@ const ConfirmDialog = (props) => {
           onClick={() => setOpen(false)}
           color="primary"
         >
-          No
+          {button1}
         </Button>
         <Button
           variant="contained"
@@ -33,7 +33,7 @@ const ConfirmDialog = (props) => {
           }}
           color="primary"
         >
-          Yes
+          {button2}
         </Button>
       </DialogActions>
     </Dialog>

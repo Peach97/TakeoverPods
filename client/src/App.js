@@ -22,56 +22,106 @@ export const App = ({ setToggleDark, spotify }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(expression);
   const [currentId, setCurrentId] = useState(0);
   const [page, setPage] = useState("");
-  const [{ playlist }] = useStateValue();
+  const [{ playlist, premiumToken }] = useStateValue();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
+  if (!localStorage.getItem("userToken")) {
+    //dispatch and id for updating/fetching posts
+    return (
+      <>
+        {playlist ? (
+          <Router>
+            <Navbar setToggleDark={setToggleDark} />
+            <Routes>
+              <Route
+                path="/"
+                exact
+                element={
+                  <Home
+                    setIsMenuOpen={setIsMenuOpen}
+                    isMenuOpen={isMenuOpen}
+                    spotify={spotify}
+                  />
+                }
+              />
 
-  //dispatch and id for updating/fetching posts
-  return (
-    <>
-      {playlist ? (
-        <Router>
-          <Navbar setToggleDark={setToggleDark} />
-          <Routes>
-            <Route
-              path="/"
-              exact
-              element={
-                <Home
-                  setIsMenuOpen={setIsMenuOpen}
-                  isMenuOpen={isMenuOpen}
-                  spotify={spotify}
-                />
-              }
+              <Route
+                path="/archive"
+                element={<EpisodeArchive page={page} setPage={setPage} />}
+              />
+              <Route path="/platforms" element={<Platforms />} />
+              <Route path="/contact" element={<Contact />} />
+              {/* <Route path="/network" element={<Network />} /> */}
+              <Route path="/about" element={<About />} />
+              <Route
+                path="/trending"
+                element={
+                  <Trending currentId={currentId} setCurrentId={setCurrentId} />
+                }
+              />
+            </Routes>
+            <ScrollToTopButton />
+            <PersistentPlayBar
+              spotify={spotify}
+              setMenuStatus={setIsMenuOpen}
+              isOpen={isMenuOpen}
             />
-            <Route
-              path="/archive"
-              element={<EpisodeArchive page={page} setPage={setPage} />}
+            <Footer />
+          </Router>
+        ) : (
+          <Loading />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        {premiumToken ? (
+          <Router>
+            <Navbar setToggleDark={setToggleDark} />
+            <Routes>
+              <Route
+                path="/"
+                exact
+                element={
+                  <Home
+                    setIsMenuOpen={setIsMenuOpen}
+                    isMenuOpen={isMenuOpen}
+                    spotify={spotify}
+                  />
+                }
+              />
+
+              <Route
+                path="/archive"
+                element={<EpisodeArchive page={page} setPage={setPage} />}
+              />
+              <Route path="/platforms" element={<Platforms />} />
+              <Route path="/contact" element={<Contact />} />
+              {/* <Route path="/network" element={<Network />} /> */}
+              <Route path="/about" element={<About />} />
+              <Route
+                path="/trending"
+                element={
+                  <Trending currentId={currentId} setCurrentId={setCurrentId} />
+                }
+              />
+            </Routes>
+            <ScrollToTopButton />
+            <PersistentPlayBar
+              spotify={spotify}
+              setMenuStatus={setIsMenuOpen}
+              isOpen={isMenuOpen}
             />
-            <Route path="/platforms" element={<Platforms />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* <Route path="/network" element={<Network />} /> */}
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/trending"
-              element={
-                <Trending currentId={currentId} setCurrentId={setCurrentId} />
-              }
-            />
-          </Routes>
-          <ScrollToTopButton />
-          <PersistentPlayBar
-            setMenuStatus={setIsMenuOpen}
-            isOpen={isMenuOpen}
-          />
-          <Footer />
-        </Router>
-      ) : (
-        <Loading />
-      )}
-    </>
-  );
+            <Footer />
+          </Router>
+        ) : (
+          <Loading />
+        )}
+      </>
+    );
+  }
 };

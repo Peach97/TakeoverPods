@@ -1,10 +1,15 @@
 import { Grid, Typography, Button } from "@mui/material";
-import * as React from "react";
+import React, { useState } from "react";
 import "./HeroSection.css";
 import { Box } from "@mui/system";
 import UnstyledButtonCustom from "./ButtonCustom";
 import { useSelector } from "react-redux";
 import { useStateValue } from "../../StateProvider.js";
+import moment from "moment";
+import SpotifyLoginButton from "../../SpotifyLoginButton";
+import ConfirmDialog from "../ConfirmButton.js";
+import { useHref } from "react-router-dom";
+import { accessUrl } from "../../spotify.js";
 
 let expression = true;
 
@@ -12,8 +17,18 @@ export function toggle() {
   expression = !expression;
 }
 
-export default function HeroSection({ setMenuStatus, spotify }) {
-  const [{ playlist }, dispatch] = useStateValue();
+export default function HeroSection({
+  setMenuStatus,
+  spotify,
+  playSong,
+  track,
+}) {
+  const [{ playlist, user }, dispatch] = useStateValue();
+  const [confirmOpen, setConfirmOpen] = useState();
+  const handleClick = () => {
+    window.open(`${accessUrl}`);
+  };
+  console.log(user);
 
   // const [{ shows }, dispatch] = useStateValue();
   // console.log(shows.body);
@@ -62,16 +77,20 @@ export default function HeroSection({ setMenuStatus, spotify }) {
               >
                 Latest Episode
               </Typography>
-              <Typography fontWeight={200} variant="h5" gutterBottom>
-                <b>{playlist?.items[0].track.name}</b>
-              </Typography>
+
               <Typography
                 className="description-text"
-                fontWeight={100}
-                variant="body1"
+                fontWeight={600}
+                variant="h4"
                 gutterBottom
               >
-                {playlist?.items[0].track.description}
+                {playlist?.items[0].track.artists[0].name}
+              </Typography>
+              <Typography variant="h5" fontWeight={600} gutterBottom>
+                {moment(playlist?.items[0].added_at).fromNow()}
+              </Typography>
+              <Typography fontWeight={200} variant="h5" gutterBottom>
+                {playlist?.items[0].track.name}
               </Typography>
               <div
                 style={{
@@ -81,14 +100,32 @@ export default function HeroSection({ setMenuStatus, spotify }) {
                   marginTop: "2.5rem",
                 }}
               >
-                <Button
-                  onClick={() => {
-                    toggle();
-                    setMenuStatus(expression);
+                {user ? (
+                  <Button
+                    onClick={() => {
+                      toggle();
+                      setMenuStatus(expression);
+                      playSong(playlist?.items[0].track.id);
+                    }}
+                  >
+                    <UnstyledButtonCustom />
+                  </Button>
+                ) : (
+                  <Button onClick={() => setConfirmOpen(true)}>
+                    <UnstyledButtonCustom />
+                  </Button>
+                )}
+                <ConfirmDialog
+                  title="Login to Spotify?"
+                  children="With Spotify Premium, you will be able to access full length podcasts in the app. Without a premium account, you can check us you can access a preview here, or check us out on Youtube"
+                  button1="I don't have a Spotify Account"
+                  button2="Login with Spotify Premium"
+                  open={confirmOpen}
+                  setOpen={setConfirmOpen}
+                  onConfirm={() => {
+                    handleClick();
                   }}
-                >
-                  <UnstyledButtonCustom />
-                </Button>
+                />
               </div>
             </Box>
           </Grid>

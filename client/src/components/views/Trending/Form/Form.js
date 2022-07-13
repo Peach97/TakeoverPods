@@ -213,6 +213,8 @@ const Form = ({ currentId, setCurrentId, openForm, setOpenForm }) => {
                 </Button>
                 <ConfirmDialog
                   title="Clear?"
+                  button1="Decline"
+                  button2="Confirm"
                   open={confirmOpen}
                   setOpen={setConfirmOpen}
                   onConfirm={() => {

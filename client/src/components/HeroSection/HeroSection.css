@@ -11,7 +11,7 @@
     display: -ms-flexbox;
     display: flex;
     height: fit-content;
-    padding: 10vh 0 40vh 0;
+    padding: 10vh 0 10vh 0;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;

@@ -125,6 +125,8 @@ const BlogLatest = ({ post, setCurrentId, setOpenForm, openForm }, props) => {
             </MenuItem>
             <ConfirmDialog
               title="Delete Post?"
+              button1="Decline"
+              button2="Confirm"
               open={confirmOpen}
               setOpen={setConfirmOpen}
               onConfirm={() => {

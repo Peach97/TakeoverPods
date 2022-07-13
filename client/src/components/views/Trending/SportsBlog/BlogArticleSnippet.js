@@ -126,6 +126,8 @@ const BlogArticleSnippet = ({ post, setCurrentId, setOpenForm, openForm }) => {
                   </MenuItem>
                   <ConfirmDialog
                     title="Delete Post?"
+                    button1="Decline"
+                    button2="Confirm"
                     open={confirmOpen}
                     setOpen={setConfirmOpen}
                     onConfirm={() => {

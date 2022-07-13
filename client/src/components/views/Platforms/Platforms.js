@@ -47,8 +47,9 @@ const Platforms = () => {
             Listen on the Site
           </Typography>
           <Typography lineHeight={2} variant="body1" color="text.secondary">
-            Check out all episodes in-house. Right here. Right now. New episodes
-            will be uploaded regularly for your listening pleasure.
+            Login to Spotify to check out all episodes in-house. Right here.
+            Right now. New episodes will be uploaded regularly for your
+            listening pleasure.
           </Typography>
           <CustomButton
             sx={{

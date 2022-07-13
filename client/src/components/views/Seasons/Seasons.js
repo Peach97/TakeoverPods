@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, Button } from "@mui/material";
+import { List, ListItem, Button, Divider } from "@mui/material";
 import { Grid } from "@mui/material";
 import "./Seasons.css";
 import AwesomeCards from "../../AwesomeCards/AwesomeCards";
@@ -21,8 +21,9 @@ export const CustomButton = styled(Button)({
   },
 });
 
-const Seasons = () => {
+const Seasons = ({ playSong }) => {
   const [{ playlist }, dispatch] = useStateValue();
+  console.log(playlist);
   // const videos = useSelector((state) => state.videos);
   // console.log(videos);
   // videos.sort(({ publishedAt }) => (publishedAt > publishedAt ? 1 : -1));
@@ -87,6 +88,7 @@ const Seasons = () => {
               updated blog to keep you in the know.
             </Typography>
           </Grid>
+          <Divider sx={{ width: "90%", margin: "5rem 0 5rem 0" }} />
           <Grid
             container
             direction="row"
@@ -132,8 +134,10 @@ const Seasons = () => {
                   <ListItem>
                     <AwesomeCards
                       aria-label="episodes"
+                      play={playSong(item.track.id)}
                       image={item.track.album.images[0].url}
                       date={item.added_at}
+                      artist={item.track.artists[0].name}
                       title={item.track.name}
                       description={item.description}
                       sx={{
@@ -171,6 +175,7 @@ const Seasons = () => {
                       aria-label="episodes"
                       image={item.track.album.images[0].url}
                       date={item.added_at}
+                      artist={item.track.artists[0].name}
                       title={item.track.name}
                       description={item.description}
                       sx={{

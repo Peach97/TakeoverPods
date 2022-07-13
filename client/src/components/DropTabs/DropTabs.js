@@ -60,10 +60,10 @@ const DropTabs = () => {
       >
         <div className="tab-dropdown-container">
           <CustomTab
-            onClick={() => ScrollTo("seasons")}
-            component={Button}
+            component={StyledLink}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
+            to="/"
             label="Episodes"
             icon={<ArrowDropDownIcon />}
             iconPosition="end"
@@ -92,11 +92,11 @@ const DropTabs = () => {
         </div>
         <div className="tab-dropdown-container">
           <CustomTab
-            component={Button}
+            component={StyledLink}
             onMouseEnter={handleClickSecondLevel}
             onMouseLeave={handleLeaveSecondLevel}
+            to="/"
             label="About"
-            onClick={() => ScrollTo("about")}
             icon={<ArrowDropDownIcon />}
             iconPosition="end"
           >
@@ -128,7 +128,7 @@ const DropTabs = () => {
             onMouseEnter={handleEnterThird}
             onMouseLeave={handleLeaveThirdLevel}
             to="/trending"
-            label="Network"
+            label="Blog"
             icon={<ArrowDropDownIcon />}
             iconPosition="end"
           >

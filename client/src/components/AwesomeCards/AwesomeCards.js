@@ -14,13 +14,15 @@ const AwesomeCards = (props) => {
         className="latest-episode-card"
         sx={{
           bgcolor: "background.default",
-          borderRadius: "8px",
+          borderRadius: "36px",
+          minHeight: "32.5rem",
+          minWidth: "25rem",
         }}
       >
         <CardMedia
           component="img"
-          height="fit-content"
-          width={460}
+          height={300}
+          minWidth={300}
           image={props.image}
           alt="cannot view at this time"
           sx={props.sx}
@@ -34,9 +36,15 @@ const AwesomeCards = (props) => {
           </Typography>
           <Typography
             color="text.secondary"
+            sx={{ fontSize: "1.5rem", fontWeight: 600 }}
+          >
+            {props.artist}
+          </Typography>
+          <Typography
+            color="text.secondary"
             pt={1}
-            sx={{ fontSize: "1.75rem", fontWeight: 800 }}
-            className="title-text"
+            sx={{ fontSize: "1rem", fontWeight: 400 }}
+            className="description-text"
           >
             {props.title}
           </Typography>
@@ -55,9 +63,13 @@ const AwesomeCards = (props) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              position: "absolute",
+              bottom: "0",
+              pb: "2.5rem",
+              width: "90%",
             }}
           >
-            <StyledButton aria-label="listen">
+            <StyledButton aria-label="listen" onClick={props.play}>
               <PlayCircleOutlineIcon sx={{ color: "text.secondary" }} />{" "}
               <Typography color="text.secondary" pl={1} fontSize={"1rem"}>
                 Listen
