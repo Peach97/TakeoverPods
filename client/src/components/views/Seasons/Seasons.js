@@ -11,6 +11,7 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useStateValue } from "../../../StateProvider";
+import { TryRounded } from "@mui/icons-material";
 
 export const CustomButton = styled(Button)({
   backgroundImage: `linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)`,
@@ -20,14 +21,14 @@ export const CustomButton = styled(Button)({
     color: "#F3FAFF",
   },
 });
-
-const Seasons = ({ playSong }) => {
+export default function Seasons({ playSong, setIsMenuOpen }) {
   const [{ playlist }, dispatch] = useStateValue();
   console.log(playlist);
   // const videos = useSelector((state) => state.videos);
   // console.log(videos);
   // videos.sort(({ publishedAt }) => (publishedAt > publishedAt ? 1 : -1));
-  const recentThree = playlist?.items.slice(0, 3);
+  const recentThree = playlist.items.slice(0, 3);
+
   // console.log(recentThree);
   return (
     <Box
@@ -128,13 +129,15 @@ const Seasons = ({ playSong }) => {
             justifyContent="center"
             alignItems="center"
           >
-            {recentThree.map((item) => (
+            {recentThree.map((item, index) => (
               <Grid item md={3.5} sm={6} xs={10} sx={{ maxWidth: "1500px" }}>
                 <List mx="auto">
                   <ListItem>
                     <AwesomeCards
+                      setMenuStatus={setIsMenuOpen}
+                      playSong={playSong}
+                      item={item.key}
                       aria-label="episodes"
-                      play={playSong(item.track.id)}
                       image={item.track.album.images[0].url}
                       date={item.added_at}
                       artist={item.track.artists[0].name}
@@ -172,6 +175,7 @@ const Seasons = ({ playSong }) => {
                 <List mx="auto">
                   <ListItem>
                     <AwesomeCards
+                      setMenuStatus={setIsMenuOpen}
                       aria-label="episodes"
                       image={item.track.album.images[0].url}
                       date={item.added_at}
@@ -191,6 +195,4 @@ const Seasons = ({ playSong }) => {
       </Box>
     </Box>
   );
-};
-
-export default Seasons;
+}

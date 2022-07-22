@@ -5,14 +5,12 @@ import {
   updatePost,
   deletePost,
   getPost,
-  getPostsByChannel,
 } from "../controllers/posts.js";
 
 const router = express.Router();
 //https:/www.googleleapis.com/youtube/v3/search?key=apiKey&type=video&part=snippet&q=foo
 //http://localhost:5000/posts
 router.get("/", getPosts);
-router.get("/channel", getPostsByChannel);
 router.get("/:id", getPost);
 router.post("/", createPosts);
 router.patch("/:id", updatePost);

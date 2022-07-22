@@ -8,7 +8,13 @@ const SocialButtonGroup = () => {
     <>
       <CustomTab component={Link} to="/platforms" label="Where to Listen" />
 
-      <CustomButton variant="contained">Subscribe</CustomButton>
+      <CustomButton
+        href="https://www.youtube.com/channel/UCXd9541vxjUHIF8kV-FsCZQ/featured"
+        target="_blank"
+        variant="contained"
+      >
+        Subscribe
+      </CustomButton>
     </>
   );
 };

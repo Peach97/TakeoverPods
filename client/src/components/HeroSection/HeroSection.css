@@ -1,11 +1,12 @@
 .hero-container {
     z-index: -101;
     background-color: black;
-    background-image: linear-gradient(32deg, rgba(0, 0, 0, 0), transparent), url("../../images/mesh\ \(27\).png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/landing-page.jpg");
     background-attachment: scroll fixed;
     -webkit-box-pack: center;
     background-position: 0 0 0 0;
     display: flex;
+    filter: contrast(85%);
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;

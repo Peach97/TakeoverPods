@@ -9,6 +9,7 @@ export const initialState = {
   item: null,
   devices: null,
   premiumToken: null,
+  auth: null,
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,6 +29,8 @@ const reducer = (state, action) => {
       return { ...state, item: action.item };
     case "SET_DEVICES":
       return { ...state, devices: action.devices };
+    case "SET_AUTH":
+      return { ...state, authUser: action.authUser };
     default:
       return state;
   }

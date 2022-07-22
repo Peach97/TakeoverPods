@@ -23,12 +23,11 @@ export default function HeroSection({
   playSong,
   track,
 }) {
-  const [{ playlist, user }, dispatch] = useStateValue();
   const [confirmOpen, setConfirmOpen] = useState();
   const handleClick = () => {
     window.open(`${accessUrl}`);
   };
-  console.log(user);
+  const [{ playlist, user }] = useStateValue();
 
   // const [{ shows }, dispatch] = useStateValue();
   // console.log(shows.body);
@@ -45,13 +44,13 @@ export default function HeroSection({
   return (
     <div className="hero-container" id="hero-container">
       <div>
-        <ul className="background">
+        {/* <ul className="background">
           <li></li>
           <li></li>
           <li></li>
           <li></li>
           <li></li>
-        </ul>
+        </ul> */}
         <Grid
           container
           justifyContent="start"
@@ -105,7 +104,7 @@ export default function HeroSection({
                     onClick={() => {
                       toggle();
                       setMenuStatus(expression);
-                      playSong(playlist?.items[0].track.id);
+                      playSong(0);
                     }}
                   >
                     <UnstyledButtonCustom />

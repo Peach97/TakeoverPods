@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import BasicMenu from "./MenuButton";
@@ -7,7 +13,12 @@ import "./AwesomeCards.css";
 import { StyledButton } from "./MenuButton";
 import moment from "moment";
 
-const AwesomeCards = (props) => {
+let expression = true;
+
+function toggle() {
+  expression = !expression;
+}
+export default function AwesomeCards(props) {
   return (
     <div>
       <Card
@@ -69,12 +80,19 @@ const AwesomeCards = (props) => {
               width: "90%",
             }}
           >
-            <StyledButton aria-label="listen" onClick={props.play}>
+            <Button
+              onClick={() => {
+                toggle();
+                props.setMenuStatus(expression);
+                props.playSong(props.item);
+              }}
+              aria-label="listen"
+            >
               <PlayCircleOutlineIcon sx={{ color: "text.secondary" }} />{" "}
               <Typography color="text.secondary" pl={1} fontSize={"1rem"}>
                 Listen
               </Typography>
-            </StyledButton>
+            </Button>
             <StyledButton disableRipple aria-label="dropdown">
               <BasicMenu />
             </StyledButton>
@@ -83,6 +101,4 @@ const AwesomeCards = (props) => {
       </Card>
     </div>
   );
-};
-
-export default AwesomeCards;
+}

@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Divider,
-  Drawer,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Drawer, Paper, TextField, Typography } from "@mui/material";
 import FileBase from "react-file-base64";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Box } from "@mui/system";
@@ -18,9 +11,21 @@ import AddIcon from "@mui/icons-material/Add";
 import ConfirmDialog from "../../../ConfirmButton";
 import { FormControl } from "@mui/material";
 import { InputLabel, MenuItem, Select } from "@mui/material";
-
 const CssTextField = styled(TextField)({
   margin: "1rem 0 1rem 0",
+});
+const AddButton = styled(Button)({
+  backgroundImage: `linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)`,
+  borderRadius: "50%",
+  padding: "20px",
+  position: "fixed",
+  bottom: "10rem",
+  left: "50%",
+  transform: "translate(-50%)",
+  color: "#fff",
+  "&:hover": {
+    filter: "brightness(110%)",
+  },
 });
 
 //GET CURRENT ID OF POST WE ARE ON
@@ -35,7 +40,9 @@ const Form = ({ currentId, setCurrentId, openForm, setOpenForm }) => {
     selectedFile: "",
   });
   const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+    currentId
+      ? state.posts.posts.find((message) => message._id === currentId)
+      : null
   );
   const dispatch = useDispatch();
   useEffect(() => {
@@ -226,20 +233,9 @@ const Form = ({ currentId, setCurrentId, openForm, setOpenForm }) => {
           </Paper>
         </Box>
       </Drawer>
-      <Button
-        sx={{
-          borderRadius: "50%",
-          padding: "20px",
-          position: "fixed",
-          bottom: "10rem",
-          left: "50%",
-          transform: "translate(-50%)",
-        }}
-        variant="contained"
-        onClick={() => setOpenForm(!openForm)}
-      >
+      <AddButton variant="contained" onClick={() => setOpenForm(!openForm)}>
         <AddIcon fontSize="medium" />
-      </Button>
+      </AddButton>
     </>
   );
 };

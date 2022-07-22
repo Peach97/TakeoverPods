@@ -10,17 +10,14 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import StyledLink from "../StyledLink";
 import { ScrollTo } from "../ScrollTo";
 
-export const SubEpisodes = [
-  { label: "Episode Archive", route: "archive" },
-  { label: "Popular" },
-];
+export const SubEpisodes = [{ label: "Episode Archive", route: "archive" }];
 export const SubAbout = [
   { label: "About the Pod", route: "about" },
   { label: "Contact", route: "contact" },
 ];
 export const SubNetwork = [
   { label: "Takeover Blog", route: "trending" },
-  { label: "Sponsors" },
+  { label: "Bloggers", route: "auth" },
 ];
 const DropTabs = () => {
   //active nav underline effect values

@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { deletePost } from "../../../../actions/posts";
 import EditIcon from "@mui/icons-material/Edit";
 import ConfirmDialog from "../../../ConfirmButton";
+import { useNavigate } from "react-router-dom";
+import { useStateValue } from "../../../../StateProvider";
 
 import {
   Card,
@@ -23,6 +25,8 @@ import {
 
 const BlogLatest = ({ post, setCurrentId, setOpenForm, openForm }, props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [{ authUser }] = useStateValue();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -32,6 +36,7 @@ const BlogLatest = ({ post, setCurrentId, setOpenForm, openForm }, props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const openPost = (e) => navigate(`/trending/${post._id}`);
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
       <Card
@@ -59,14 +64,13 @@ const BlogLatest = ({ post, setCurrentId, setOpenForm, openForm }, props) => {
           >
             {post.title}
           </Typography>
-          <Button>{post.channel}</Button>
           <Typography
             variant="body1"
             color="text.secondary"
             fontWeight={200}
             gutterBottom
           >
-            {moment(post.createdAt).fromNow()}
+            {post.channel} ∙ {moment(post.createdAt).fromNow()}
           </Typography>
           <Typography
             className="article-snippet-text"
@@ -82,21 +86,23 @@ const BlogLatest = ({ post, setCurrentId, setOpenForm, openForm }, props) => {
         </CardContent>
         <CardActions sx={{ justifyContent: "space-between", display: "flex" }}>
           <Box>
-            <Button size="small" onClick={() => {}}>
+            <Button size="small" onClick={openPost}>
               View Full Article
             </Button>
           </Box>
-          <Button
-            id="open-menu-button"
-            aria-controls={open ? "options-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            size="small"
-            disableElevation
-            onClick={handleClick}
-          >
-            <MoreVertIcon />
-          </Button>
+          {authUser ? (
+            <Button
+              id="open-menu-button"
+              aria-controls={open ? "options-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              size="small"
+              disableElevation
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </Button>
+          ) : null}
           <Menu
             id="options-menu"
             MenuListProps={{ "aria-labelledby": "open-menu-button" }}

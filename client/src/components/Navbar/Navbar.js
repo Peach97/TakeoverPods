@@ -8,9 +8,9 @@ import {
   useMediaQuery,
   Typography,
   Avatar,
+  IconButton,
 } from "@mui/material";
 import DrawerComp from "./DrawerComp";
-
 import { createTheme } from "@mui/material/styles";
 import spotify from "../../images/stfy.png";
 import instagram from "../../images/ig.png";
@@ -24,6 +24,7 @@ import DropTabs from "../DropTabs/DropTabs";
 import { Link } from "react-router-dom";
 import takeover from "../../images/TAKEOVER LOGO.png";
 import { ModeToggler } from "./ModeToggler";
+import SocialsBar from "./SocialsBar";
 
 export const theme = createTheme({
   palette: {
@@ -31,7 +32,10 @@ export const theme = createTheme({
     secondary: { main: "#F3FAFF" },
     tertiary: { main: "#70CFFF" },
     background: {
-      main: "#0089ce70",
+      main: "#121212",
+    },
+    top: {
+      main: "#12121243",
     },
   },
 });
@@ -70,26 +74,32 @@ export const logos = [
     image: (
       <img height="100%" src={spotify} alt="cannot be viewed at this time" />
     ),
+    route: "https://open.spotify.com/playlist/5yR4WrjiekKXCANhCmdnRW",
   },
   {
     image: (
       <img height="100%" src={instagram} alt="cannot be viewed at this time" />
     ),
+    route: "https://www.instagram.com/takeoverpods/",
   },
   {
     image: (
       <img height="100%" src={youtube} alt="cannot be viewed at this time" />
     ),
+    route: "https://www.youtube.com/channel/UCXd9541vxjUHIF8kV-FsCZQ",
   },
   {
     image: (
       <img height="100%" src={twitter} alt="cannot be viewed at this time" />
     ),
+    route: "https://mobile.twitter.com/takeoverpods",
   },
   {
     image: (
       <img height="100%" src={podcast} alt="cannot be viewed at this time" />
     ),
+    route:
+      "https://podcasts.apple.com/us/podcast/sec-takeover-pod/id1607390973",
   },
 ];
 //nav tab labels and routes
@@ -116,42 +126,105 @@ const Navbar = ({ setToggleDark }) => {
         sx={{
           marginBottom: "1px",
           boxShadow: "none",
-          zIndex: (theme) => theme.zIndex.drawer + 1,
+          zIndex: (theme) => theme.zIndex.drawer + 2,
         }}
       >
-        <Toolbar>
-          {matches ? (
-            <>
-              <Box
-                sx={{
-                  width: "100%",
-                  alignItems: "center",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  zIndex: "998",
-                }}
-              >
+        <div
+          className={color ? "appbar-shadow-none" : "appbar-shadow"}
+          style={{ zIndex: -100 }}
+        >
+          <Toolbar>
+            {matches ? (
+              <>
                 <Box
                   sx={{
-                    width: "fit-content",
+                    width: "100%",
+                    alignItems: "center",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    zIndex: "998",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "fit-content",
+                      alignItems: "center",
+                      display: "flex",
+                    }}
+                  >
+                    <DrawerComp
+                      color={color}
+                      setColor={setColor}
+                      changeColor={changeColor}
+                      setToggleDark={setToggleDark}
+                    />
+
+                    <Typography
+                      variant="h5"
+                      display="flex"
+                      fontWeight={800}
+                      color={color ? "text.primary" : "white"}
+                      sx={{
+                        textDecoration: "none",
+                        zIndex: (theme) => theme.zIndex.drawer - 1,
+                      }}
+                      component={Link}
+                      to="/"
+                      textTransform="none"
+                    >
+                      <Avatar
+                        sx={{
+                          border: "1px solid",
+                          borderColor: "text.primary",
+                        }}
+                        src={takeover}
+                        alt=""
+                      />
+                    </Typography>
+                  </Box>
+                  <Box alignItems="center" display="flex">
+                    {/* <ModeToggler
+                    color={color}
+                    setColor={setColor}
+                    changeColor={changeColor}
+                    setToggleDark={setToggleDark}
+                  /> */}
+                    <CustomButton
+                      href="https://www.youtube.com/channel/UCXd9541vxjUHIF8kV-FsCZQ/featured"
+                      target="_blank"
+                      sx={{
+                        borderRadius: "18px",
+                        fontSize: "0.8rem",
+                        whiteSpace: "nowrap",
+                        fontWeight: "800",
+                      }}
+                      variant="contained"
+                    >
+                      Subscribe
+                    </CustomButton>
+                  </Box>
+                </Box>
+              </>
+            ) : (
+              <>
+                <Box
+                  sx={{
+                    width: "100%",
                     alignItems: "center",
                     display: "flex",
                   }}
                 >
-                  <DrawerComp />
-
                   <Typography
                     variant="h5"
-                    display="flex"
-                    fontWeight={800}
                     color={color ? "text.primary" : "white"}
-                    sx={{
-                      textDecoration: "none",
-                      zIndex: (theme) => theme.zIndex.drawer - 1,
-                    }}
+                    position="fixed"
+                    top="1.5rem"
                     component={Link}
+                    sx={{ textDecoration: "none" }}
                     to="/"
+                    zIndex={999}
                     textTransform="none"
+                    fontWeight={800}
                   >
                     <Avatar
                       sx={{ border: "1px solid", borderColor: "text.primary" }}
@@ -159,95 +232,42 @@ const Navbar = ({ setToggleDark }) => {
                       alt=""
                     />
                   </Typography>
-                </Box>
-                <Box alignItems="center" display="flex">
-                  <CustomButton
+                  <Typography
                     sx={{
-                      borderRadius: "18px",
-                      fontSize: "0.8rem",
-                      whiteSpace: "nowrap",
-                      fontWeight: "800",
+                      display: "flex",
+                      width: "100%",
                     }}
-                    variant="contained"
+                    component="div"
+                    color={color ? "text.primary" : "white"}
                   >
-                    Subscribe
-                  </CustomButton>
+                    <DropTabs />
+                  </Typography>
                 </Box>
-              </Box>
-            </>
-          ) : (
-            <>
-              <Box
-                sx={{
-                  width: "100%",
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
+                <ModeToggler
+                  color={color}
+                  setColor={setColor}
+                  changeColor={changeColor}
+                  setToggleDark={setToggleDark}
+                />
                 <Typography
-                  variant="h5"
-                  color={color ? "text.primary" : "white"}
-                  position="fixed"
-                  top="1.5rem"
-                  component={Link}
-                  sx={{ textDecoration: "none" }}
-                  to="/"
-                  zIndex={999}
-                  textTransform="none"
-                  fontWeight={800}
-                >
-                  <Avatar
-                    sx={{ border: "1px solid", borderColor: "text.primary" }}
-                    src={takeover}
-                    alt=""
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    display: "flex",
-                    width: "100%",
-                  }}
                   component="div"
                   color={color ? "text.primary" : "white"}
+                  style={{
+                    width: "fit-content",
+                    display: "flex",
+                    alignItems: "center",
+                    position: "fixed",
+                    top: "1.5rem",
+                    right: "1.5rem",
+                  }}
                 >
-                  <DropTabs />
+                  <SocialButtonGroup />
                 </Typography>
-              </Box>
-              <ModeToggler
-                color={color}
-                setColor={setColor}
-                changeColor={changeColor}
-                setToggleDark={setToggleDark}
-              />
-              {/* <Box
-                component="div"
-                style={{
-                  width: "fit-content",
-                  display: "flex",
-                  alignItems: "center",
-                  position: "fixed",
-                  top: "1.5rem",
-                  right: "35%",
-                }}
-              > */}
-              {/* </Box> */}
-              <Typography
-                component="div"
-                color={color ? "text.primary" : "white"}
-                style={{
-                  width: "fit-content",
-                  display: "flex",
-                  alignItems: "center",
-                  position: "fixed",
-                  top: "1.5rem",
-                  right: "1.5rem",
-                }}
-              >
-                <SocialButtonGroup />
-              </Typography>
-            </>
-          )}
-        </Toolbar>
+              </>
+            )}
+          </Toolbar>
+          <SocialsBar />
+        </div>
       </AppBar>
     </React.Fragment>
   );
