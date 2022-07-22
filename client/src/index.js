@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import ToggleColorMode from "./ToggleColorMode";
+import ContextWrapper from "./ContextWrapper.js";
 import { Provider } from "react-redux";
 import { configureStore, applyMiddleware, compose, createStore } from "redux";
 import { StateProvider } from "./StateProvider";
@@ -14,7 +14,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 ReactDOM.render(
   <Provider store={store}>
     <StateProvider initialState={initialState} reducer={reducer}>
-      <ToggleColorMode />
+      <ContextWrapper />
     </StateProvider>
   </Provider>,
   document.getElementById("root")

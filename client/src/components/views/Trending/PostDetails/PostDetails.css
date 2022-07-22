@@ -1,0 +1,22 @@
+.post-summary::first-letter {
+    initial-letter: 3;
+}
+
+.blog-img {
+    width: 50vw;
+
+}
+
+@media screen and (max-width: 1050px) {
+    .blog-img {
+        width: 75vw
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .blog-img {
+        width: 90vw;
+    }
+
+}

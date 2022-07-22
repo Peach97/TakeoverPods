@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -8,30 +8,36 @@ import {
   AppBar,
   Button,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import AwesomeCards from "../../AwesomeCards/AwesomeCards";
 import "./EpisodeArchive.css";
 import gradient from "../../../images/mesh (27).png";
 import { useSelector } from "react-redux";
-import Pagination from "../../../Pagination/Pagination";
+import Paginate from "./Pagination/Pagination";
+import usePagination from "./Pagination/usePagination";
 import { useStateValue } from "../../../StateProvider";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 const navigate = useNavigate;
-const EpisodeArchive = ({ page, setPage }) => {
-  const [{ playlist }, dispatch] = useStateValue();
-  const archive = playlist.items;
-  //handle change
-  // const handleChange = (page) => {
-  //   setPage(page);
-  //   window.scroll(0, 0);
-  // };
-  // const query = useQuery();
-  // const videos = useSelector((state) => state.videos);
-  // console.log(videos);
+
+const EpisodeArchive = () => {
+  let [page, setPage] = useState(1);
+  const per_page = 9;
+  const [{ playlist }] = useStateValue();
+  const data = playlist.items;
+  const _data = usePagination(data, per_page);
+
+  const count = Math.ceil(playlist.items.length / per_page);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    _data.jump(p);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
   return (
     <Box
       sx={{
@@ -42,26 +48,42 @@ const EpisodeArchive = ({ page, setPage }) => {
         bgcolor: "background.default",
         color: "text.primary",
         paddingTop: "10rem",
+        objectFit: "contain",
       }}
     >
-      <img className="background-gradient" src={gradient} alt="" />
-      <h1 id="platforms">Episode Archive</h1>
+      {/* <img className="background-gradient" src={gradient} alt="" /> */}
+      <Typography
+        variant="h3"
+        fontWeight={300}
+        sx={{ position: "absolute", top: "15rem", zIndex: 2 }}
+      >
+        Episode Archive
+      </Typography>
       <Box sx={{ maxWidth: "1500px" }}>
         <Grid
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
-          mt="20rem"
+          mt="15rem"
+          spacing={2}
         >
-          {archive.map((item) => (
-            <Grid item md={3} sm={6} xs={10}>
+          {_data.currentData().map((item, key) => (
+            <Grid
+              item
+              {...{ key }}
+              md={3.5}
+              sm={6}
+              xs={10}
+              sx={{ maxWidth: "1500px" }}
+            >
               <List mx="auto">
                 <ListItem>
                   <AwesomeCards
                     aria-label="episodes"
                     image={item.track.album.images[0].url}
                     date={item.added_at}
+                    artist={item.track.artists[0].name}
                     title={item.track.name}
                     description={item.description}
                     sx={{
@@ -72,7 +94,6 @@ const EpisodeArchive = ({ page, setPage }) => {
               </List>
             </Grid>
           ))}
-
           <Grid
             item
             md={10}
@@ -83,11 +104,7 @@ const EpisodeArchive = ({ page, setPage }) => {
             display="flex"
           >
             <Paper sx={{ padding: "0.5rem" }} elevation={1}>
-              {/* <Pagination
-                setPage={setPage}
-                page={page}
-                handleChange={handleChange}
-              /> */}
+              <Paginate count={count} page={page} handleChange={handleChange} />
             </Paper>
           </Grid>
         </Grid>

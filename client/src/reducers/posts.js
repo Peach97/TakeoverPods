@@ -3,24 +3,31 @@ import {
   CREATE,
   UPDATE,
   DELETE,
-  FETCH_BY_CHANNEL,
+  FETCH_POST,
 } from "../constants/actionTypes";
 
-export default (posts = [], action) => {
+const reducers = (state = { posts: [] }, action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
-    case FETCH_BY_CHANNEL:
-      return action.payload;
+      return { ...state, posts: action.payload.data };
+    case FETCH_POST:
+      return { ...state, post: action.payload.post };
     case CREATE:
-      return [...posts, action.payload];
+      return { ...state, posts: [...state.posts, action.payload] };
     case UPDATE:
-      return posts.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+      };
     case DELETE:
-      return posts.filter((post) => post._id !== action.payload);
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload),
+      };
     default:
-      return posts;
+      return state;
   }
 };
+export default reducers;

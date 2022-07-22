@@ -20,9 +20,13 @@ import { deletePost } from "../../../../actions/posts";
 import EditIcon from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useNavigate } from "react-router-dom";
+import { useStateValue } from "../../../../StateProvider";
 
 const BlogArticleSnippet = ({ post, setCurrentId, setOpenForm, openForm }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [{ authUser }] = useStateValue();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -32,6 +36,8 @@ const BlogArticleSnippet = ({ post, setCurrentId, setOpenForm, openForm }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const openPost = (e) => navigate(`/trending/${post._id}`);
+
   return (
     <>
       <Box sx={{ display: "flex", height: "100%" }}>
@@ -52,7 +58,7 @@ const BlogArticleSnippet = ({ post, setCurrentId, setOpenForm, openForm }) => {
             />
           </Box>
 
-          <CardActionArea>
+          <CardActionArea onClick={openPost}>
             <Box
               sx={{
                 display: "flex",
@@ -87,17 +93,19 @@ const BlogArticleSnippet = ({ post, setCurrentId, setOpenForm, openForm }) => {
                 <Button size="small" onClick={() => {}}>
                   {post.channel}
                 </Button>
-                <Button
-                  id="open-menu-button"
-                  aria-controls={open ? "options-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  size="small"
-                  disableElevation
-                  onClick={handleClick}
-                >
-                  <MoreVertIcon />
-                </Button>
+                {authUser ? (
+                  <Button
+                    id="open-menu-button"
+                    aria-controls={open ? "options-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    size="small"
+                    disableElevation
+                    onClick={handleClick}
+                  >
+                    <MoreVertIcon />
+                  </Button>
+                ) : null}
                 <Menu
                   id="options-menu"
                   MenuListProps={{ "aria-labelledby": "open-menu-button" }}
@@ -126,6 +134,8 @@ const BlogArticleSnippet = ({ post, setCurrentId, setOpenForm, openForm }) => {
                   </MenuItem>
                   <ConfirmDialog
                     title="Delete Post?"
+                    button1="Decline"
+                    button2="Confirm"
                     open={confirmOpen}
                     setOpen={setConfirmOpen}
                     onConfirm={() => {

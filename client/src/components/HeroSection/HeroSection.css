@@ -1,17 +1,18 @@
 .hero-container {
     z-index: -101;
     background-color: black;
-    background-image: linear-gradient(32deg, rgba(0, 0, 0, 0), transparent), url("../../images/mesh\ \(27\).png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/landing-page.jpg");
     background-attachment: scroll fixed;
     -webkit-box-pack: center;
     background-position: 0 0 0 0;
     display: flex;
+    filter: contrast(85%);
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     height: fit-content;
-    padding: 10vh 0 40vh 0;
+    padding: 10vh 0 10vh 0;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;

@@ -3,12 +3,13 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 8rem;
+    height: 6rem;
 
     /* rgba(32, 33, 36); */
     z-index: 99;
     transition: bottom 0.75s;
     display: flex;
+    justify-content: center;
 
 
 
@@ -17,29 +18,47 @@
 
 #playbar.open {
     display: flex;
-    bottom: -8rem;
+    bottom: -5.5rem;
 }
 
 #maximize-btn {
-    transition: all 2s;
+
     display: flex;
-    width: 3rem;
-    -webkit-transition: all 2s;
-    bottom: 7.5rem;
+    width: 1.5rem;
+    bottom: -5rem;
     position: fixed;
-    pointer-events: all;
-    border-radius: 8px;
+    pointer-events: none;
+
 }
 
 #maximize-btn.show {
-    bottom: 10rem;
+    bottom: 5rem;
     display: flex;
     position: fixed;
-    transition: all 0.1s;
-    -webkit-transition: all 0.1s;
+    transition: all 1s;
+    /* -webkit-transition: all 0.1s; */
 
-    pointer-events: none;
+    pointer-events: all;
 
 
+
+}
+
+@media screen and (max-width: 1024px) {
+    #playbar {
+        height: 10rem;
+    }
+
+    #maximize-btn {
+        display: none;
+    }
+
+    #maximize-btn.show {
+        display: none;
+    }
+
+    #player-control-btns {
+        display: none;
+    }
 
 }

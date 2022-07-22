@@ -10,17 +10,14 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import StyledLink from "../StyledLink";
 import { ScrollTo } from "../ScrollTo";
 
-export const SubEpisodes = [
-  { label: "Episode Archive", route: "archive" },
-  { label: "Popular" },
-];
+export const SubEpisodes = [{ label: "Episode Archive", route: "archive" }];
 export const SubAbout = [
   { label: "About the Pod", route: "about" },
   { label: "Contact", route: "contact" },
 ];
 export const SubNetwork = [
   { label: "Takeover Blog", route: "trending" },
-  { label: "Sponsors" },
+  { label: "Bloggers", route: "auth" },
 ];
 const DropTabs = () => {
   //active nav underline effect values
@@ -60,10 +57,10 @@ const DropTabs = () => {
       >
         <div className="tab-dropdown-container">
           <CustomTab
-            onClick={() => ScrollTo("seasons")}
-            component={Button}
+            component={StyledLink}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
+            to="/"
             label="Episodes"
             icon={<ArrowDropDownIcon />}
             iconPosition="end"
@@ -92,11 +89,11 @@ const DropTabs = () => {
         </div>
         <div className="tab-dropdown-container">
           <CustomTab
-            component={Button}
+            component={StyledLink}
             onMouseEnter={handleClickSecondLevel}
             onMouseLeave={handleLeaveSecondLevel}
+            to="/"
             label="About"
-            onClick={() => ScrollTo("about")}
             icon={<ArrowDropDownIcon />}
             iconPosition="end"
           >
@@ -128,7 +125,7 @@ const DropTabs = () => {
             onMouseEnter={handleEnterThird}
             onMouseLeave={handleLeaveThirdLevel}
             to="/trending"
-            label="Network"
+            label="Blog"
             icon={<ArrowDropDownIcon />}
             iconPosition="end"
           >

@@ -3,12 +3,20 @@ import {
   CREATE,
   UPDATE,
   DELETE,
-  FETCH_BY_CHANNEL,
+  FETCH_POST,
 } from "../constants/actionTypes";
 import * as api from "../api/index.js";
 
 // Action Creators
 
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPost(id);
+    dispatch({ type: FETCH_POST, payload: { post: data } });
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
@@ -19,21 +27,13 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-export const getPostsbyChannel = (channel) => async (dispatch) => {
-  try {
-    const { data } = await api.fetchPostsByChannel(channel);
-
-    dispatch({ type: FETCH_BY_CHANNEL, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
 
     dispatch({ type: CREATE, payload: data });
+
+    navigate(`posts/${data._id}`);
   } catch (error) {
     console.log(error);
   }

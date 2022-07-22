@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Stack } from "@mui/material";
 import { Typography } from "@mui/material";
 import SportsTabs from "./SportsBlog/SportsTabs";
@@ -7,18 +7,24 @@ import BlogLatest from "./SportsBlog/BlogLatest";
 import OtherBar from "./SportsBlog/OtherBar";
 import { useSelector } from "react-redux";
 import Form from "./Form/Form";
-import { Skeleton } from "@mui/material";
 import BlogArticleSnippet from "./SportsBlog/BlogArticleSnippet";
+import takeover from "../../../images/TAKEOVER BANNER.jpeg";
+import { Divider } from "@mui/material";
+import Loading from "../../HeroSection/Loading";
+import { useDispatch } from "react-redux";
+import { getPosts } from "../../../actions/posts";
+import { useStateValue } from "../../../StateProvider";
 
 const Trending = ({ currentId, setCurrentId }) => {
-  const posts = useSelector((state) => state.posts);
-  console.log(posts);
+  const { posts } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState(false);
-  posts.sort(({ createdAt }) => (createdAt > createdAt ? 1 : -1));
+  const [{ authUser }] = useStateValue();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
   console.log(posts);
-  const recentThree = posts.slice(0, 3);
-  console.log(recentThree);
-
+  if (!posts.length) return <Loading />;
   return (
     <Box
       sx={{
@@ -32,10 +38,9 @@ const Trending = ({ currentId, setCurrentId }) => {
         flexDirection: "column",
       }}
     >
-      {/* <img className="background-gradient" src={gradient} alt="" /> */}
-      <Typography variant="h4" color="text.primary">
-        Takeover Blog
-      </Typography>
+      <Divider sx={{ width: "90%", margin: "2.5rem 0 2.5rem 0" }}>
+        <img src={takeover} height="100%" width="350px" alt="" />
+      </Divider>
       <Box
         sx={{
           height: "fit-content",
@@ -98,7 +103,7 @@ const Trending = ({ currentId, setCurrentId }) => {
           >
             <Box>
               <Stack>
-                {recentThree.map((post) => (
+                {posts.slice(0, 2).map((post) => (
                   <BlogArticleSnippet
                     key={post._id}
                     openForm={openForm}
@@ -143,13 +148,14 @@ const Trending = ({ currentId, setCurrentId }) => {
           setCurrentId={setCurrentId}
         />
       </Box>
-
-      <Form
-        setOpenForm={setOpenForm}
-        openForm={openForm}
-        currentId={currentId}
-        setCurrentId={setCurrentId}
-      />
+      {authUser ? (
+        <Form
+          setOpenForm={setOpenForm}
+          openForm={openForm}
+          currentId={currentId}
+          setCurrentId={setCurrentId}
+        />
+      ) : null}
     </Box>
   );
 };

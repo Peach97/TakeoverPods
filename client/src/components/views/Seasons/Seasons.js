@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, Button } from "@mui/material";
+import { List, ListItem, Button, Divider } from "@mui/material";
 import { Grid } from "@mui/material";
 import "./Seasons.css";
 import AwesomeCards from "../../AwesomeCards/AwesomeCards";
@@ -11,6 +11,7 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useStateValue } from "../../../StateProvider";
+import { TryRounded } from "@mui/icons-material";
 
 export const CustomButton = styled(Button)({
   backgroundImage: `linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)`,
@@ -20,13 +21,14 @@ export const CustomButton = styled(Button)({
     color: "#F3FAFF",
   },
 });
-
-const Seasons = () => {
+export default function Seasons({ playSong, setIsMenuOpen }) {
   const [{ playlist }, dispatch] = useStateValue();
+  console.log(playlist);
   // const videos = useSelector((state) => state.videos);
   // console.log(videos);
   // videos.sort(({ publishedAt }) => (publishedAt > publishedAt ? 1 : -1));
-  const recentThree = playlist?.items.slice(0, 3);
+  const recentThree = playlist.items.slice(0, 3);
+
   // console.log(recentThree);
   return (
     <Box
@@ -87,6 +89,7 @@ const Seasons = () => {
               updated blog to keep you in the know.
             </Typography>
           </Grid>
+          <Divider sx={{ width: "90%", margin: "5rem 0 5rem 0" }} />
           <Grid
             container
             direction="row"
@@ -126,14 +129,18 @@ const Seasons = () => {
             justifyContent="center"
             alignItems="center"
           >
-            {recentThree.map((item) => (
+            {recentThree.map((item, index) => (
               <Grid item md={3.5} sm={6} xs={10} sx={{ maxWidth: "1500px" }}>
                 <List mx="auto">
                   <ListItem>
                     <AwesomeCards
+                      setMenuStatus={setIsMenuOpen}
+                      playSong={playSong}
+                      item={item.key}
                       aria-label="episodes"
                       image={item.track.album.images[0].url}
                       date={item.added_at}
+                      artist={item.track.artists[0].name}
                       title={item.track.name}
                       description={item.description}
                       sx={{
@@ -168,9 +175,11 @@ const Seasons = () => {
                 <List mx="auto">
                   <ListItem>
                     <AwesomeCards
+                      setMenuStatus={setIsMenuOpen}
                       aria-label="episodes"
                       image={item.track.album.images[0].url}
                       date={item.added_at}
+                      artist={item.track.artists[0].name}
                       title={item.track.name}
                       description={item.description}
                       sx={{
@@ -186,6 +195,4 @@ const Seasons = () => {
       </Box>
     </Box>
   );
-};
-
-export default Seasons;
+}

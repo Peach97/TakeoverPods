@@ -3,14 +3,26 @@
 
 }
 
-.navbar {
-    backdrop-filter: blur(20px);
-    opacity: 80;
-}
+.navbar {}
 
 .notnavbar {
     backdrop-filter: none;
     color: #fff;
+    background-color: #12121243;
+
+}
+
+.appbar-shadow {
+    background-color: #121212a5;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: initial;
+    z-index: -10000;
+}
+
+.appbar-shadow-none {
+    background-color: none;
 }
 
 

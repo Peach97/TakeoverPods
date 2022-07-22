@@ -114,9 +114,9 @@ const About = () => {
                   height: "5rem",
                 }}
               >
-                <Avatar alt="Donovan White" src={profile} />
+                <Avatar alt="Host" src="/" />
                 <Typography pl={1} variant="h5" color="text.primary">
-                  Donovan White
+                  Lorem Ipsum
                 </Typography>
               </div>
 

@@ -18,15 +18,23 @@ export const logos = [
   {
     image: "youtube_img",
     label: "Youtube",
+    href: "https://www.youtube.com/channel/UCXd9541vxjUHIF8kV-FsCZQ",
   },
   {
     image: "spotify_img",
     label: "Spotify",
+    href: "https://open.spotify.com/playlist/5yR4WrjiekKXCANhCmdnRW",
   },
-  { image: "facebook_img", label: "Facebook Video" },
-  { image: "applepodcasts_img", label: "Apple Podcasts" },
-  { image: "vimeo_img", label: "Vimeo" },
-  { image: "soundcloud_img", label: "Soundcloud" },
+  {
+    image: "facebook_img",
+    label: "Facebook Video",
+    href: "https://www.facebook.com/takeoverpods/",
+  },
+  {
+    image: "applepodcasts_img",
+    label: "Apple Podcasts",
+    href: "https://podcasts.apple.com/us/podcast/sec-takeover-pod/id1607390973",
+  },
 ];
 
 const Platforms = () => {
@@ -47,8 +55,9 @@ const Platforms = () => {
             Listen on the Site
           </Typography>
           <Typography lineHeight={2} variant="body1" color="text.secondary">
-            Check out all episodes in-house. Right here. Right now. New episodes
-            will be uploaded regularly for your listening pleasure.
+            Login to Spotify to check out all episodes in-house. Right here.
+            Right now. New episodes will be uploaded regularly for your
+            listening pleasure.
           </Typography>
           <CustomButton
             sx={{
@@ -91,6 +100,7 @@ const Platforms = () => {
               <List mx="auto">
                 <ListItem>
                   <SocialCard
+                    href={logo.href}
                     component={Card}
                     image={require("../../../images/" + logo.image + ".png")}
                     label={logo.label}

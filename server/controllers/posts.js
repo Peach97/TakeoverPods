@@ -6,27 +6,16 @@ dotenv.config();
 
 export const getPosts = async (req, res) => {
   try {
-    const postMessages = await PostMessage.find();
+    const posts = await PostMessage.find();
 
-    console.log(postMessages);
+    console.log(posts);
 
-    res.status(200).json(postMessages);
+    res.status(200).json({ data: posts });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 
-export const getPostsByChannel = async (req, res) => {
-  const { channel } = req.query;
-
-  try {
-    const posts = await PostMessage.find({ channel });
-
-    res.json({ posts });
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
 export const getPost = async (req, res) => {
   const { id } = req.params;
 

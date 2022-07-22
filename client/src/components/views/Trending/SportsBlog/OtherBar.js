@@ -6,10 +6,8 @@ import { Typography } from "@mui/material";
 import { createSelectorHook, useSelector } from "react-redux";
 
 const OtherBar = ({ openForm, currentId, setCurrentId, setOpenForm }) => {
-  const posts = useSelector((state) => state.posts);
-  const correctPosts = posts.filter(
-    ({ author }) => author === "Chris Lavallee"
-  );
+  const { posts } = useSelector((state) => state.posts);
+  const correctPosts = posts.filter(({ channel }) => channel === "Other");
   correctPosts.slice(0, 4);
   console.log(correctPosts);
   return (
