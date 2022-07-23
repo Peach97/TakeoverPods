@@ -38,6 +38,7 @@
 
 
 
+<p align="right">(<a href="#top">Back To Top</a>)</p>
 
 
 ### Spotify Authorization Flow
@@ -91,17 +92,65 @@ This is an example using the React `useEffect` hook
   <br />
   <img alt="carbon" src="https://user-images.githubusercontent.com/90569344/180618029-214fe42a-19ea-4bc8-a446-3bb989e6d091.png" height="700" width="700"/>
   
-  https://user-images.githubusercontent.com/90569344/180618029-214fe42a-19ea-4bc8-a446-3bb989e6d091.png
+  <p align="right">(<a href="#top">Back To Top</a>)</p>
+
   
-  ### Installation
+  ## Installation
   
-  Install NPM Packages
+  #### Clone the repo
+  
+   ```sh
+   git clone https://github.com/Peach97/TakeoverPods.git
+   ```
+   
+  <br />
+   
+  ### Setting Up Node Server
   
   <br />
+  
+  #### Install NPM Packages
   
   ```sh
   npm install
   ````
+  
+  This will install all necessary dependencies associated with the project
+  
+  #### Enter Client Credentials
+  
+  ```js
+  var client_id = 'CLIENT_ID';
+  var client_secret = 'CLIENT_SECRET'
+  ```
+  
+  Client credentials obtained using the spotify developer console <a href="https://developer.spotify.com/dashboard/login">here</a>. Create a free Spotify developer account in order to verify your client.
+  
+  #### Start Application
+  
+  ```sh
+  npm start
+  ```
+  
+  This will set up the development server at `http://localhost:3000/`
+  
+  <p align="right">(<a href="#top">Back To Top</a>)</p>
+  
+  ## Usage
+  
+  The available <b>features</b> are dependent upon whether the user has completed the <a href="https://developer.spotify.com/documentation/general/guides/authorization/code-flow/">authorization code flow</a> and has a Spotify Premium Account.
+  
+  ### Features with client credentials flow
+  
+  <br />
+  <b>
+  <ul>
+  <li>Episode Cards</li>
+  <li>Episode Archive</li>
+  <li>Blog Articles</li>
+  <li>Blog Article Creation and Editing</li>
+  </ul>
+  </b>
   
   
 
