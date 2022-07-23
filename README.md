@@ -140,7 +140,7 @@ This is an example using the React `useEffect` hook
   
   The available <b>features</b> are dependent upon whether the user has completed the <a href="https://developer.spotify.com/documentation/general/guides/authorization/code-flow/">authorization code flow</a> and has a Spotify Premium Account.
   
-  ### Features with client credentials flow
+  ### Features with client credentials flow free token
   
   <br />
   <b>
@@ -152,7 +152,20 @@ This is an example using the React `useEffect` hook
   </ul>
   </b>
   
+  ### Features with authorization code flow premium token
   
+  <br />
+  <b>
+  <ul>
+  <li>All with free token</li>
+  <li>Media Player</li>
+  <li>Playback controls</li>
+  <li>Saving/Deleting Spotify Playlist Items</li>
+  </ul>
+  </b>
+  
+  ## Blog
+    
 
   ### Contact
   Cameron Petrie 
