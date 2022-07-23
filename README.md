@@ -89,9 +89,22 @@ This is an example using the React `useEffect` hook
   Here is an example using an `access_url` to allow for premium users to login and return an access token
   <br />
   <br />
-  <img alt="carbon" src="https://user-images.githubusercontent.com/90569344/180595509-373985dd-bf33-4756-96e0-12702b0a4183.png" height="600" width="900"/>
+  <img alt="carbon" src="https://user-images.githubusercontent.com/90569344/180618029-214fe42a-19ea-4bc8-a446-3bb989e6d091.png" height="700" width="700"/>
+  
+  https://user-images.githubusercontent.com/90569344/180618029-214fe42a-19ea-4bc8-a446-3bb989e6d091.png
+  
+  ### Installation
+  
+  Install NPM Packages
+  
+  <br />
+  
+  ```sh
+  npm install
+  ````
   
   
+
   ### Contact
   Cameron Petrie 
   <ul>
