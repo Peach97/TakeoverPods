@@ -23,8 +23,8 @@
 
 ## About The Project
 <div align="center">
-<img  width="500" alt="Screen Shot 2022-07-23 at 12 25 03 AM" src="https://user-images.githubusercontent.com/90569344/180590475-21e04f38-7432-4656-a55a-b641837ae3e5.png">
-<img  width="500" alt="Screen Shot 2022-07-23 at 12 27 16 AM" src="https://user-images.githubusercontent.com/90569344/180592848-abdc3cd1-2a5e-4466-bd78-8358e3c81987.png">
+<img  width="45%" alt="Screen Shot 2022-07-23 at 12 25 03 AM" src="https://user-images.githubusercontent.com/90569344/180590475-21e04f38-7432-4656-a55a-b641837ae3e5.png">
+<img  width="45%" alt="Screen Shot 2022-07-23 at 12 27 16 AM" src="https://user-images.githubusercontent.com/90569344/180592848-abdc3cd1-2a5e-4466-bd78-8358e3c81987.png">
 </div>
 
 ### Built Using
