@@ -230,8 +230,6 @@ While also allowing for user playback once a <b>premium token</b> is retrieved.
 
 
 
-### Spotify Web Wrapper
-
 ## Contact
   ### Cameron Petrie 
   
