@@ -165,7 +165,27 @@ This is an example using the React `useEffect` hook
   </b>
   
   ## Blog
-    
+  
+  ### Blogger Authentication
+  
+ <br />
+  
+  The authentication process for bloggers is done using <a href="https://firebase.google.com/">Firebase</a>. In order to add to the blog, bloggers will need a verified Firebase <b>username</b> and <b>password</b>.
+  <br />
+  
+![authentication-demo](https://user-images.githubusercontent.com/90569344/180630989-5813778d-0e7d-46aa-b3e7-658f58926412.gif)
+
+<br />
+Once the login credentials have been confirmed, bloggers are able to:
+
+<br />
+
+<ul>
+<li>Create Blog Posts</li>
+<li>Edit Existing Blog Posts</li>
+<li>Delete Blog Posts following confirmation dialog</li>
+</ul>
+
 
   ### Contact
   Cameron Petrie 
