@@ -204,7 +204,28 @@ All posts are stored in MongoDB
 ## Spotify Web Playback (Media Player)
   <p align="right">(<a href="#top">Back To Top</a>)</p>
   
+### Why this is awesome
+
+The Takeover Pods Web App uses <b>two</b> forms of user authorization in order to show public Spotify data on app render
+<ul>
+    <li>Playlist Data</li>
+    <li>Episode Description</li>
+    <li>Date posted</li>
+    <li>Updates made by <b>contributors</b> to the public playlist</li>
+</ul>
+
+While also allowing for user playback once a <b>premium token</b> is retrieved.
+
+<u>
+    <b>This means there is no need for a Spotify Login prior to accessing the Landing Page</b>
+</u>
+<br/>
+<br />
+
+  
 ![player-demo](https://user-images.githubusercontent.com/90569344/180632202-6152005e-123c-411d-abae-956c66fb5cd6.gif)
+
+
 
 ### Spotify Web Wrapper
 
