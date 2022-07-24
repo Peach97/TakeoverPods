@@ -229,8 +229,9 @@ While also allowing for user playback once a <b>premium token</b> is retrieved.
 
 ### Spotify Web Wrapper
 
-  ### Contact
-  Cameron Petrie 
+## Contact
+  ### Cameron Petrie 
+  
   <ul>
   <li> <a href="https://www.linkedin.com/in/cameron-petrie-4b00aa148/">LinkedIn</a></li>
   <li><b>petrie.cam@gmail.com</b></li>
