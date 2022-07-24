@@ -207,6 +207,9 @@ All posts are stored in MongoDB
 ### Why this is awesome
 
 The Takeover Pods Web App uses <b>two</b> forms of user authorization in order to show public Spotify data on app render
+
+## Data
+
 <ul>
     <li>Playlist Data</li>
     <li>Episode Description</li>
