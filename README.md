@@ -10,7 +10,7 @@
 <p align="center">Podcast/Blogging Application with in-app media player, CRUD enabled blog and user authorization. Built to accomodate sports journalism network with numerous content providers. <b>MERN</b> Stack Application <i>(Node JS)</i>.
 <br />
 <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the code »</strong></a>
+    <a href="https://github.com/Peach97/TakeoverPods"><strong>Explore the code »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Peach97/TakeoverPods">View Demo</a>
