@@ -157,7 +157,7 @@ This is an example using the React `useEffect` hook
   <br />
   <b>
   <ul>
-  <li>All with free token</li>
+  <li>All free token features +</li>
   <li>Media Player</li>
   <li>Playback controls</li>
   <li>Saving/Deleting Spotify Playlist Items</li>
@@ -187,6 +187,8 @@ Once the login credentials have been confirmed, bloggers are able to:
 </ul>
 
 <br />
+  <p align="right">(<a href="#top">Back To Top</a>)</p>
+
 
 ### Database
 
@@ -200,6 +202,9 @@ All posts are stored in MongoDB
 
 
 ## Spotify Web Playback (Media Player)
+  <p align="right">(<a href="#top">Back To Top</a>)</p>
+  
+![player-demo](https://user-images.githubusercontent.com/90569344/180632202-6152005e-123c-411d-abae-956c66fb5cd6.gif)
 
 ### Spotify Web Wrapper
 
