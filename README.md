@@ -182,10 +182,26 @@ Once the login credentials have been confirmed, bloggers are able to:
 
 <ul>
 <li>Create Blog Posts</li>
-<li>Edit Existing Blog Posts</li>
+<li>Update Existing Blog Posts</li>
 <li>Delete Blog Posts following confirmation dialog</li>
 </ul>
 
+<br />
+
+### Database
+
+All posts are stored in MongoDB
+
+#### Mongoose
+
+<a href="https://mongoosejs.com/">MongooseJS</a> is used for object-modeling. The created schema is as follows:
+<br />
+<img src="https://user-images.githubusercontent.com/90569344/180631479-eaf7ab63-72df-47ac-893c-a3157969bd44.png" height="500" width="700" alt="carbon"/>
+
+
+## Spotify Web Playback (Media Player)
+
+### Spotify Web Wrapper
 
   ### Contact
   Cameron Petrie 
