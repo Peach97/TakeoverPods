@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "postinstall": "npm install --prefix server && npm run build --prefix server",
   },
   "engines": {
     "node": "14.x",
