@@ -23,7 +23,7 @@ app.use("/posts", postRoutes);
 
 // const CONNECTION_URL =
 //   "mongodb+srv://Peach97:gjAZvUQL3KV55yAn@cluster0.dx7oulm.mongodb.net/TakeoverPods?retryWrites=true&w=majority";
-const PORT = process.env.PORT || 'mongodb://localhost:27017/TakeoverPods';
+const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
