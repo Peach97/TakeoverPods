@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://takeover-pods.herokuapp.com/" });
+const API = axios.create({ baseURL: "https://takeover-pods.herokuapp.com" });
 const SPOTIFY = axios.create({
   baseURL: "http://accounts.spotify.com/authorize",
 });
