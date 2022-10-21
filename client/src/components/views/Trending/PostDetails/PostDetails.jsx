@@ -23,7 +23,7 @@ const PostDetails = () => {
         left: 0,
         behavior: "smooth",
       })
-    }, [id])
+    }, [id, dispatch])
 
     if(!post) return <Loading/>;
   
