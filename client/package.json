@@ -2,7 +2,7 @@
   "name": "big-10",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://takeover-pods.herokuapp.com",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -46,7 +46,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+      "import/no-anonymous-default-export": "off"
     }
   },
   "browserslist": {
